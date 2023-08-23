@@ -1,11 +1,26 @@
 <script setup>
-import { ref } from 'vue'
+import axios from "axios";
+import { onMounted, ref } from "vue";
 
 defineProps({
   msg: String,
-})
+});
 
-const count = ref(0)
+onMounted(() => {
+  console.log("mounted");
+
+  // mock test
+  axios
+    .get("/api/test")
+    .then((res) => {
+      console.log("test data:", res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+const count = ref(0);
 </script>
 
 <template>
